@@ -18,5 +18,5 @@ private:
 	unsigned char m_color;
 };
 
-std::ostream& operator<< (std::ostream&, const Pixel&); // global function
+std::ostream& operator<< (std::ostream&, const Pixel&); // Global Function.
 

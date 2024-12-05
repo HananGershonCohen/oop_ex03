@@ -21,7 +21,7 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 	}
 }
 
-ImageDataStructure::ImageDataStructure(const ImageDataStructure& other)
+ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp c-tor
 	: m_height(other.m_height), m_width(other.m_width)
 {
 	m_ImageDS = new Pixel * [m_height];

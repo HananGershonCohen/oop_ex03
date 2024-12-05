@@ -37,6 +37,7 @@ int main()
 	cout << "image3 " << endl;
 	cout << image3 << endl;
 
+
 	//if (image1 == image2)
 	//	cout << "equal"; 
 	//cout << "not";

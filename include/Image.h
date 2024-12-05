@@ -20,5 +20,6 @@ public:
 
 private:
 	ImageDataStructure m_Image;
+
 };
 

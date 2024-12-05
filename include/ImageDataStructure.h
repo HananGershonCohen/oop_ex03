@@ -4,9 +4,8 @@
 class ImageDataStructure
 {
 public:
-	ImageDataStructure(int , int, Pixel);
-	Pixel** getImage() const;
-;
+	ImageDataStructure(int height=0, int width=0, Pixel pixel=' ');
+
 private:
 	Pixel** m_Image;
 	int m_width;

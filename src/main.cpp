@@ -17,8 +17,9 @@ int main()
 	// p1 &= p2;
 	//cout << endl << "p1 is: " << p1;
 	//cout << endl << "p2 is: " << p2;
-
-	Image image(20, 10, 219);
-	cout << image;
+	Image image1;
+	Image image2(20, 10);
+	Image image3(20, 10, 219);
+	//cout << image;
 	return 0;
 }

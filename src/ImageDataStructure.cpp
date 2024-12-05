@@ -19,8 +19,3 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel):m_hei
 		}
 	}
 }
-
-Pixel** ImageDataStructure::getImage() const
-{
-	return m_Image;
-}

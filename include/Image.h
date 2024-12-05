@@ -9,16 +9,10 @@ using std::endl;
 class Image
 {
 public:
-	//Image();
-	Image(int , int , Pixel );
-	ImageDataStructure getImage() const;
-	int getWidth() const;
-	int getHeight() const;
+	Image(); // (defult) c-tor 1
+	Image(int, int); // c-tor 2
+	Image(int , int , Pixel ); // c-tor 3
 
 private:
 	ImageDataStructure m_Image;
-	int m_width;
-	int m_height;
 };
-
-std::ostream& operator<<(std::ostream&, const Image&);

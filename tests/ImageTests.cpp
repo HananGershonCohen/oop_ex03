@@ -7,11 +7,11 @@
 //    const auto img1 = Image(5, 2);
 //    const auto img2 = Image(2, 5);
 //
-//    /*SECTION("GetHeight, GetWidth works")
+//    SECTION("GetHeight, GetWidth works")
 //    {
 //        REQUIRE(img1.GetHeight() == 5);
 //        REQUIRE(img1.GetWidth() == 2);
-//    }*/
+//    }
 //
 //    /*SECTION("basic + operations works")
 //    {
@@ -25,7 +25,7 @@
 //        REQUIRE(img3 == img1);
 //    }
 //}
-//
+
 //TEST_CASE("Empty Image", "[Image]")
 //{
 //    const auto img1 = Image();

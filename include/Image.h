@@ -18,9 +18,8 @@ public:
 	void operator=(const Image&);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
 
-
 private:
 	ImageDataStructure m_Image;
-
+	
 };
 

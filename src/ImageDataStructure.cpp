@@ -5,7 +5,7 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 	:m_height(height) , m_width(width)
 {
 	// Dynamic allocation of a two-dimensional array
-	m_ImageDS = allocationImage(m_height, m_width);
+	m_ImageDS = allocImage(m_height, m_width);
 
 	// Initializing the pixels
 	for (int i=0;i< height;i++)
@@ -20,7 +20,7 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp c-tor
 	: m_height(other.m_height), m_width(other.m_width)
 {
-	m_ImageDS = allocationImage(m_height, m_width);
+	m_ImageDS = allocImage(m_height, m_width);
 	this->copy(other);
 }
 
@@ -36,9 +36,8 @@ void ImageDataStructure::copy(const ImageDataStructure& other)
 			m_ImageDS[i][j] = other.m_ImageDS[i][j];
 		}
 	}
-}
-
-Pixel** ImageDataStructure::allocationImage(int height, int width)
+} 
+Pixel** ImageDataStructure::allocImage(int height, int width)
 {
 	Pixel** image = new Pixel * [height];
 	for (int i = 0; i < height; i++)

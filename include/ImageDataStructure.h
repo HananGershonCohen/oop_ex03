@@ -22,6 +22,6 @@ private:
 	int m_width;
 	int m_height;
 	void copy(const ImageDataStructure&);
-	Pixel** allocationImage(int, int);
+	Pixel** allocImage(int, int);
 };
 

@@ -5,11 +5,7 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 	:m_height(height) , m_width(width)
 {
 	// Dynamic allocation of a two-dimensional array
-	m_ImageDS = new Pixel*[m_height];
-	for (int i = 0; i < m_height; i++)
-	{
-		m_ImageDS[i] = new Pixel[m_width];
-	}
+	m_ImageDS = allocationImage(m_height, m_width);
 
 	// Initializing the pixels
 	for (int i=0;i< height;i++)
@@ -24,11 +20,14 @@ ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp c-tor
 	: m_height(other.m_height), m_width(other.m_width)
 {
-	m_ImageDS = new Pixel * [m_height];
-	for (int i = 0; i < m_height; i++)
-	{
-		m_ImageDS[i] = new Pixel[m_width];
-	}
+	m_ImageDS = allocationImage(m_height, m_width);
+	this->copy(other);
+}
+
+void ImageDataStructure::copy(const ImageDataStructure& other)
+{
+	m_height = other.m_height;
+	m_width = other.m_width;
 
 	for (int i = 0; i < m_height; i++)
 	{
@@ -37,6 +36,17 @@ ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp 
 			m_ImageDS[i][j] = other.m_ImageDS[i][j];
 		}
 	}
+}
+
+Pixel** ImageDataStructure::allocationImage(int height, int width)
+{
+	Pixel** image = new Pixel * [height];
+	for (int i = 0; i < height; i++)
+	{
+		image[i] = new Pixel[width];
+	}
+
+	return image;
 }
 
 ImageDataStructure::~ImageDataStructure()
@@ -51,7 +61,6 @@ ImageDataStructure::~ImageDataStructure()
 		m_ImageDS = nullptr; 
 	}
 }
-
 
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 {
@@ -79,6 +88,11 @@ bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
 	return !(*this == other);
 }
 
+void ImageDataStructure::operator=(const ImageDataStructure& other)
+{
+	this->copy(other);
+}
+
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 {
 	if (!image.m_ImageDS)
@@ -89,7 +103,6 @@ std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)
 		for (int j = 0; j < image.m_width; j++)
 		{
 			os << image.m_ImageDS[i][j];
-
 		}
 		os << endl;
 	}

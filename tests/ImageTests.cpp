@@ -7,17 +7,17 @@
 //    const auto img1 = Image(5, 2);
 //    const auto img2 = Image(2, 5);
 //
-//    SECTION("GetHeight, GetWidth works")
+//    /*SECTION("GetHeight, GetWidth works")
 //    {
 //        REQUIRE(img1.GetHeight() == 5);
 //        REQUIRE(img1.GetWidth() == 2);
-//    }
+//    }*/
 //
-//    SECTION("basic + operations works")
+//    /*SECTION("basic + operations works")
 //    {
 //        REQUIRE((img1 + img1).GetHeight() == 5);
 //        REQUIRE((img1 + img1).GetWidth() == 4);
-//    }
+//    }*/
 //
 //    SECTION("copy operations work")
 //    {
@@ -31,8 +31,8 @@
 //    const auto img1 = Image();
 //    const auto img2 = Image(2, 5);
 //
-//    REQUIRE(img1.GetHeight() == 0);
-//    REQUIRE(img1.GetWidth() == 0);
+//    //REQUIRE(img1.GetHeight() == 0);
+//    //REQUIRE(img1.GetWidth() == 0);
 //
 //    SECTION("operations on empty Image")
 //    {

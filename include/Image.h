@@ -15,6 +15,7 @@ public:
 	Image(const Image&); // copy c-tor
 	bool operator==(const Image&)const;
 	bool operator!=(const Image&)const;
+	void operator=(const Image&);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
 
 

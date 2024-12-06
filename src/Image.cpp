@@ -18,6 +18,11 @@ bool  Image::operator!=(const Image& other)const
 	return !(*this == other);
 }
 
+void Image::operator=(const Image& other)
+{
+	this->m_Image = other.m_Image;
+}
+
 std::ostream& operator<<(std::ostream& os, const Image& image)
 {
 

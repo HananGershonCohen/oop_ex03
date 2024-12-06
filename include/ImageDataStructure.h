@@ -14,11 +14,14 @@ public:
 	~ImageDataStructure();
 	bool operator==(const ImageDataStructure&)const;
 	bool operator!=(const ImageDataStructure&)const;
+	void operator=(const ImageDataStructure&);
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 
 private:
 	Pixel** m_ImageDS = nullptr;
 	int m_width;
 	int m_height;
+	void copy(const ImageDataStructure&);
+	Pixel** allocationImage(int, int);
 };
 

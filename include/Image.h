@@ -15,6 +15,9 @@ public:
 	Image(const Image&); // copy c-tor
 	int GetHeight() const;
 	int GetWidth() const;
+	void operator~();
+	Pixel& operator()(unsigned int, unsigned int);
+	const Pixel& operator()(unsigned int, unsigned int) const;
 	bool operator==(const Image&)const;
 	bool operator!=(const Image&)const;
 	void operator=(const Image&);

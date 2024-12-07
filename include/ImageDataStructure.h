@@ -15,18 +15,22 @@ public:
 	~ImageDataStructure();
 	int GetHeight()const;
 	int GetWidth()const;
+	void operator~();
 	bool operator==(const ImageDataStructure&)const;
 	bool operator!=(const ImageDataStructure&)const;
 	void operator=(const ImageDataStructure&);
+	Pixel& operator()(unsigned int, unsigned int);
+	const Pixel& operator()(unsigned int, unsigned int) const;
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 
 private:
 	Pixel** m_ImageDS = nullptr;
-	int m_width;
-	int m_height;
+	int m_width; // change to UNSIGNED INT.
+	int m_height; // change to UNSIGNED INT.
 	void copy(const ImageDataStructure&);
 	Pixel** allocImage(int, int) const;
+
 	void deleteImage();
 };
 

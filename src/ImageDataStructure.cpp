@@ -1,5 +1,6 @@
 #include "ImageDataStructure.h"
-
+const unsigned char BLACK = (unsigned char)219;
+const unsigned char WHITE = (unsigned char)32;
 
 ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
 	:m_height(height) , m_width(width)
@@ -31,6 +32,9 @@ ImageDataStructure::ImageDataStructure(int height, int width, Pixel**& pixel)
 
 void ImageDataStructure::copy(const ImageDataStructure& other)
 {
+	if (!other.m_ImageDS)
+		return; // nullptr
+
 	m_height = other.m_height;
 	m_width = other.m_width;
 
@@ -45,6 +49,8 @@ void ImageDataStructure::copy(const ImageDataStructure& other)
 
 Pixel** ImageDataStructure::allocImage(int height, int width)const
 {
+	if (height <= 0 || width <= 0)
+		return nullptr; // invalid size
 
 	Pixel** image = new Pixel * [height];
 	for (int i = 0; i < height; i++)
@@ -112,13 +118,40 @@ bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
 
 void ImageDataStructure::operator=(const ImageDataStructure& other)
 {
+
+	if (this == &other)
+		return; 
+
+	if (!other.m_ImageDS)
+		return; // nullptr
+
 	this->deleteImage();
 	this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
 	this->copy(other);
 }
 
+Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)
+{
+	if (!m_ImageDS)
+		throw std::runtime_error("Image data structure is not initialized");
+
+	if (height >= m_height || width >= m_width)
+		throw std::out_of_range("Pixel index out of range");
+
+	return m_ImageDS[height][width];
+}
+
+const Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width) const
+{
+	return const_cast<ImageDataStructure*>(this)->operator()(height, width);
+
+}
+
 ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other) const
 {
+	if (!m_ImageDS || !other.m_ImageDS)
+		return ImageDataStructure(0, 0, Pixel()); // nullptr
+
 	int newRow = (m_height > other.m_height) ? m_height : other.m_height;// max();
 	int newCol = m_width + other.m_width;
 	Pixel** newMatrix = allocImage(newRow, newCol);
@@ -138,6 +171,20 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 		}
 	}
 	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
+void ImageDataStructure::operator~()
+{
+	for (int i = 0; i < m_height; i++)
+	{
+		for (int j = 0; j < m_width; j++)
+		{
+			if (m_ImageDS[i][j] == BLACK)
+				m_ImageDS[i][j] = WHITE;
+			else if (m_ImageDS[i][j] == WHITE)
+				m_ImageDS[i][j] = BLACK;
+		}
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)

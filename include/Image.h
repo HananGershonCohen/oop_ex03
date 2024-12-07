@@ -13,6 +13,8 @@ public:
 	Image(int, int); // c-tor 2
 	Image(int , int , Pixel ); // c-tor 3
 	Image(const Image&); // copy c-tor
+	int GetHeight() const;
+	int GetWidth() const;
 	bool operator==(const Image&)const;
 	bool operator!=(const Image&)const;
 	void operator=(const Image&);
@@ -22,6 +24,5 @@ public:
 
 private:
 	ImageDataStructure m_Image;
-	
 };
 

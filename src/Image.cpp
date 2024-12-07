@@ -6,6 +6,16 @@ Image::Image(int height, int width, Pixel pixel) :m_Image(height, width, pixel) 
 
 Image::Image(const Image& other) :m_Image(other.m_Image) {}
 
+int Image::GetHeight()const
+{
+	return m_Image.GetHeight();
+}
+
+int Image::GetWidth()const
+{
+	return m_Image.GetWidth();
+}
+
 bool Image::operator==(const Image& other) const
 {
 	return (m_Image == other.m_Image); 

@@ -74,6 +74,16 @@ ImageDataStructure::~ImageDataStructure()
 	this->deleteImage();
 }
 
+int ImageDataStructure::GetHeight()const
+{
+	return m_height;
+}
+
+int ImageDataStructure::GetWidth()const
+{
+	return m_width;
+}
+
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 {
 	// Quick check for self-comparison
@@ -128,11 +138,6 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 		}
 	}
 	return ImageDataStructure(newRow, newCol, newMatrix);
-}
-
-void ImageDataStructure::operator+=(const ImageDataStructure& other)
-{
-	*this = *this + other;
 }
 
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)

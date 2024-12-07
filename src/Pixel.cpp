@@ -15,7 +15,7 @@ bool Pixel::operator==(const Pixel& other) const
 
 bool Pixel::operator!=(const Pixel& other) const
 {
-	return !(*this == other); 
+	return !(*this == other);
 }
 
 unsigned char Pixel::operator|(const Pixel& other) const

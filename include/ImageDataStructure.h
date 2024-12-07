@@ -17,6 +17,7 @@ public:
 	bool operator!=(const ImageDataStructure&)const;
 	void operator=(const ImageDataStructure&);
 	ImageDataStructure operator+(const ImageDataStructure& other) const;
+	void operator+=(const ImageDataStructure& other);
 
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 
@@ -26,5 +27,6 @@ private:
 	int m_height;
 	void copy(const ImageDataStructure&);
 	Pixel** allocImage(int, int) const;
+	void deleteImage();
 };
 

@@ -44,11 +44,20 @@ int main()
 
 	ImageDataStructure image1(10, 10, BLACK);
 	ImageDataStructure image2(10, 10, GRAY);
+	//ImageDataStructure image3;
 
-	cout << "image1 " << endl;
-	cout << image1+image2 << endl;
+	//image3 = image2;
+	//cout << "image1 " << endl;
+	cout << image1 + image2 << endl;
+
+	image1 += image2;
+
+	cout << "image1 after " << endl;
+	cout << image1 << endl;
 	cout << " image2" << endl;
-	cout << image2+image1 << endl;
+	cout << image2 << endl;
+//	cout << "image3 " << endl;
+	//cout << image3 << endl;
 
 
 	return 0;

@@ -42,8 +42,10 @@ void ImageDataStructure::copy(const ImageDataStructure& other)
 		}
 	}
 } 
+
 Pixel** ImageDataStructure::allocImage(int height, int width)const
 {
+
 	Pixel** image = new Pixel * [height];
 	for (int i = 0; i < height; i++)
 	{
@@ -53,17 +55,23 @@ Pixel** ImageDataStructure::allocImage(int height, int width)const
 	return image;
 }
 
-ImageDataStructure::~ImageDataStructure()
+void ImageDataStructure::deleteImage()
 {
 	if (m_ImageDS)
-	{ 
-		for (int i = 0; i < m_height; i++) 
+	{
+		for (int i = 0; i < m_height; i++)
 		{
-			delete[] m_ImageDS[i];  
+			delete[] m_ImageDS[i];
 		}
-		delete[] m_ImageDS; 
-		m_ImageDS = nullptr; 
+		if (m_width)
+			delete[] m_ImageDS;
+		m_ImageDS = nullptr;
 	}
+}
+
+ImageDataStructure::~ImageDataStructure()
+{
+	this->deleteImage();
 }
 
 bool ImageDataStructure::operator==(const ImageDataStructure& other) const
@@ -94,6 +102,17 @@ bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
 
 void ImageDataStructure::operator=(const ImageDataStructure& other)
 {
+	this->deleteImage();
+	//// These lines are for testing, if it's good you can insert them into the "allocImage" function.
+	this->m_height = other.m_height;
+	this->m_width = other.m_width;
+	//// so far.
+	//this->allocImage(other.m_height, other.m_width);
+	this->m_ImageDS = new Pixel * [m_height];
+	for (int i = 0; i < m_height; i++)
+	{
+		m_ImageDS[i] = new Pixel[m_width];
+	}
 	this->copy(other);
 }
 
@@ -118,6 +137,11 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 		}
 	}
 	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
+void ImageDataStructure::operator+=(const ImageDataStructure& other)
+{
+	*this = *this + other;
 }
 
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)

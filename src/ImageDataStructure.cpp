@@ -103,16 +103,7 @@ bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
 void ImageDataStructure::operator=(const ImageDataStructure& other)
 {
 	this->deleteImage();
-	//// These lines are for testing, if it's good you can insert them into the "allocImage" function.
-	this->m_height = other.m_height;
-	this->m_width = other.m_width;
-	//// so far.
-	//this->allocImage(other.m_height, other.m_width);
-	this->m_ImageDS = new Pixel * [m_height];
-	for (int i = 0; i < m_height; i++)
-	{
-		m_ImageDS[i] = new Pixel[m_width];
-	}
+	this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
 	this->copy(other);
 }
 

@@ -11,10 +11,13 @@ class ImageDataStructure
 public:
 	ImageDataStructure(int height=0, int width=0, Pixel pixel=' '); 
 	ImageDataStructure(const ImageDataStructure&); // copy c-tor
+	ImageDataStructure(int, int, Pixel**& pixel);
 	~ImageDataStructure();
 	bool operator==(const ImageDataStructure&)const;
 	bool operator!=(const ImageDataStructure&)const;
 	void operator=(const ImageDataStructure&);
+	ImageDataStructure operator+(const ImageDataStructure& other) const;
+
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 
 private:
@@ -22,6 +25,6 @@ private:
 	int m_width;
 	int m_height;
 	void copy(const ImageDataStructure&);
-	Pixel** allocImage(int, int);
+	Pixel** allocImage(int, int) const;
 };
 

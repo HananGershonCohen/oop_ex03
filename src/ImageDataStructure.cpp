@@ -24,6 +24,11 @@ ImageDataStructure::ImageDataStructure(const ImageDataStructure& other) // coyp 
 	this->copy(other);
 }
 
+ImageDataStructure::ImageDataStructure(int height, int width, Pixel**& pixel)
+	: m_height{ height }, m_width{ width }, m_ImageDS{ pixel }
+{
+}
+
 void ImageDataStructure::copy(const ImageDataStructure& other)
 {
 	m_height = other.m_height;
@@ -37,7 +42,7 @@ void ImageDataStructure::copy(const ImageDataStructure& other)
 		}
 	}
 } 
-Pixel** ImageDataStructure::allocImage(int height, int width)
+Pixel** ImageDataStructure::allocImage(int height, int width)const
 {
 	Pixel** image = new Pixel * [height];
 	for (int i = 0; i < height; i++)
@@ -90,6 +95,29 @@ bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
 void ImageDataStructure::operator=(const ImageDataStructure& other)
 {
 	this->copy(other);
+}
+
+ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other) const
+{
+	int newRow = (m_height > other.m_height) ? m_height : other.m_height;// max();
+	int newCol = m_width + other.m_width;
+	Pixel** newMatrix = allocImage(newRow, newCol);
+
+	for (int i = 0; i < newRow; i++)
+	{
+
+		for (int j = 0; j < newCol; j++)
+		{
+			if (m_width > j && m_height > i)
+				newMatrix[i][j] = m_ImageDS[i][j];
+
+			else if (j >= m_width && j - m_width < other.m_width && i < other.m_height)
+				newMatrix[i][j] = other.m_ImageDS[i][j - m_width];
+			else
+				newMatrix[i][j] = Pixel();
+		}
+	}
+	return ImageDataStructure(newRow, newCol, newMatrix);
 }
 
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)

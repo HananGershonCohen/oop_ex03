@@ -9,7 +9,7 @@ using std::endl;
 class Image
 {
 public:
-	Image(); // (defult) c-tor 1
+	Image() = default; // (defult) c-tor 1
 	Image(int, int); // c-tor 2
 	Image(int , int , Pixel ); // c-tor 3
 	Image(const Image&); // copy c-tor

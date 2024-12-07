@@ -23,9 +23,10 @@ int main()
 	// p1 &= p2;
 	//cout << endl << "p1 is: " << p1;
 	//cout << endl << "p2 is: " << p2;
-	Image image1;
-	Image image2(20, 10, BLACK);
-	Image image3 = image2;
+	Image image1(10, 20, BLACK);
+	Image image2;
+	image1 = image2;
+	//Image image3 = image2;
 	//ImageDataStructure image(10, 10, BLACK);
 
 	cout << endl;
@@ -34,8 +35,8 @@ int main()
 	cout << image1 << endl;
 	cout << " image2" << endl;
 	cout << image2 << endl;
-	cout << "image3 " << endl;
-	cout << image3 << endl;
+	//cout << "image3 " << endl;
+	//cout << image3 << endl;
 
 
 	//if (image1 == image2)

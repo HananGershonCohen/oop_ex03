@@ -42,8 +42,8 @@ int main()
 	// cout << image;
 
 
-	ImageDataStructure image1(10, 10, BLACK);
-	ImageDataStructure image2(10, 10, GRAY);
+	Image image1(10, 10, BLACK);
+	Image image2(10, 10, GRAY);
 	//ImageDataStructure image3;
 
 	//image3 = image2;

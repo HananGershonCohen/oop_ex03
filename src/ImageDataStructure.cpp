@@ -1,4 +1,4 @@
-#include "ImageDataStructure.h"
+﻿#include "ImageDataStructure.h"
 const unsigned char BLACK = (unsigned char)219;
 const unsigned char WHITE = (unsigned char)32;
 
@@ -111,11 +111,6 @@ bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 	return true;
 }
 
-bool ImageDataStructure::operator!=(const ImageDataStructure& other) const
-{
-	return !(*this == other);
-}
-
 void ImageDataStructure::operator=(const ImageDataStructure& other)
 {
 
@@ -123,7 +118,10 @@ void ImageDataStructure::operator=(const ImageDataStructure& other)
 		return; 
 
 	if (!other.m_ImageDS)
-		return; // nullptr
+	{
+		cout << "nullptr\n";
+		exit(0);
+	}
 
 	this->deleteImage();
 	this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
@@ -132,11 +130,11 @@ void ImageDataStructure::operator=(const ImageDataStructure& other)
 
 Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)
 {
-	if (!m_ImageDS)
-		throw std::runtime_error("Image data structure is not initialized");
-
-	if (height >= (unsigned int)m_height || width >= (unsigned int)m_width)
-		throw std::out_of_range("Pixel index out of range");
+	if (!m_ImageDS || height >= (unsigned int)m_height || width >= (unsigned int)m_width)
+	{
+		cout << "nullptr\n or out of range\n";
+		exit(0);
+	}
 
 	return m_ImageDS[height][width];
 }
@@ -149,8 +147,11 @@ const Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int wi
 
 ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other) const
 {
-	if (!m_ImageDS || !other.m_ImageDS)
-		return ImageDataStructure(0, 0, Pixel()); // nullptr
+	/*if (!m_ImageDS || !other.m_ImageDS)
+	{
+		cout << "nullptr\n or out of range\n";
+		exit(0);
+	}*/
 
 	int newRow = (m_height > other.m_height) ? m_height : other.m_height;// max();
 	int newCol = m_width + other.m_width;
@@ -172,6 +173,58 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 	}
 	return ImageDataStructure(newRow, newCol, newMatrix);
 }
+
+
+ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other) const
+{
+	// i need to check if is nullptr
+	int newRow = (m_height > other.m_height) ? m_height : other.m_height;
+	int newCol = (m_width > other.m_width) ? m_width : other.m_width;
+	Pixel** newMatrix = allocImage(newRow, newCol);
+
+	for (int i = 0; i < newRow; i++)
+	{
+
+		for (int j = 0; j < newCol; j++)
+		{
+			if (i < m_height && j < m_width)// áúååê ùì this
+			{
+				if (i < other.m_height && j < other.m_width)// in this and in other
+				{
+					newMatrix[i][j] = m_ImageDS[i][j] | other.m_ImageDS[i][j];
+				}
+				else// only in this
+					newMatrix[i][j] = m_ImageDS[i][j];
+			}
+
+			else if (i < other.m_height && j < other.m_width)// only in other
+			{
+				newMatrix[i][j] = other.m_ImageDS[i][j];
+			}
+			else// nat in this and nat in other
+				newMatrix[i][j] = Pixel();
+		}
+	}
+	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
+ImageDataStructure ImageDataStructure::operator&(const ImageDataStructure& other) const
+{
+	// i need to check if is nullptr
+	int newRow = (m_height < other.m_height) ? m_height : other.m_height;
+	int newCol = (m_width < other.m_width) ? m_width : other.m_width;
+	Pixel** newMatrix = allocImage(newRow, newCol);
+
+	//i dont need to check the size of both matrix
+	for (int i = 0; i < newRow; i++)
+		for (int j = 0; j < newCol; j++)
+		{
+			newMatrix[i][j] = m_ImageDS[i][j] & other.m_ImageDS[i][j];
+		}
+
+	return ImageDataStructure(newRow, newCol, newMatrix);
+}
+
 
 void ImageDataStructure::operator~()
 {

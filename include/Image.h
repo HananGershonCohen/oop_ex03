@@ -23,6 +23,13 @@ public:
 	void operator=(const Image&);
 	Image operator+(const Image& other) const;
 	void operator += (const Image& other);
+	Image operator*(unsigned int n)const;
+	friend Image operator*(unsigned int n, const Image& image);
+	void operator *=(unsigned int n);
+	Image operator|(const Image&) const;
+	void operator|=(const Image&);
+	Image operator&(const Image&) const;
+	void operator&=(const Image&);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
 
 private:

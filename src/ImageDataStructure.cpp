@@ -135,7 +135,7 @@ Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)
 	if (!m_ImageDS)
 		throw std::runtime_error("Image data structure is not initialized");
 
-	if (height >= m_height || width >= m_width)
+	if (height >= (unsigned int)m_height || width >= (unsigned int)m_width)
 		throw std::out_of_range("Pixel index out of range");
 
 	return m_ImageDS[height][width];

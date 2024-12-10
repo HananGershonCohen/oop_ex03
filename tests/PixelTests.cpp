@@ -9,8 +9,8 @@ TEST_CASE("Pixel works as expected", "[Pixel]")
 
     REQUIRE(p1 != p2);
     REQUIRE(!(p1 == p2));  
-    //REQUIRE((p1 & p2) == p1);
-    //REQUIRE((p1 | p2) == p2);
+    REQUIRE((p1 & p2) == p1);
+    REQUIRE((p1 | p2) == p2);
     p3 &= p1;
     REQUIRE(p3 == p1);
     p3 |= p2;

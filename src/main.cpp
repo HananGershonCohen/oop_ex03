@@ -46,6 +46,20 @@ int main()
 	cout << image2 << endl;
 	cout << "image3" << endl;
 	cout << image3 << endl;
+	
+	cout << "~image1" << endl;
+	cout << ~image1 << endl;
+	cout << "~image2" << endl;
+	cout << ~image2 << endl;
+	cout << "~image3" << endl;
+	cout << ~image3 << endl;
+
+	cout << "image1" << endl;
+	cout << image1 << endl;
+	cout << "image2" << endl;
+	cout << image2 << endl;
+	cout << "image3" << endl;
+	cout << image3 << endl;
 
 	cout << "image1=image2" << endl;
 	image1 = image2;
@@ -54,8 +68,13 @@ int main()
 	image1 = image2 = image3;
 	cout << image1 << endl;
 
+	// NO WORK.
+	cout << "image1*1" << endl;
+	cout << image1*1<< endl;
+	cout << "image1*2" << endl;
+	cout << image1 * 2 << endl;
 	cout << "image1*3" << endl;
-	cout << image1*3<< endl;
+	cout << image1 * 3 << endl;
 
 	return 0;
 }

@@ -19,9 +19,9 @@ int Image::GetWidth()const
 	return m_Image.GetWidth();
 }
 
-void Image::operator~()
+Image Image::operator~()
 {
-	 ~m_Image;
+	return ~m_Image;
 }
 
 Pixel& Image::operator()(unsigned int height, unsigned int width)

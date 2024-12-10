@@ -118,18 +118,6 @@ ImageDataStructure& ImageDataStructure::operator=(const ImageDataStructure& othe
 	std::ranges::swap(temp.m_width, this->m_width);
 	std::ranges::swap(temp.m_ImageDS, this->m_ImageDS);
 	return *this;
-	//if (this == &other)
-	//	return; 
-
-	//if (!other.m_ImageDS)
-	//{
-	//	cout << "nullptr\n";
-	//	exit(0);
-	//}
-
-	//this->deleteImage();
-	//this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
-	//this->copy(other);
 }
 
 Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)
@@ -151,11 +139,6 @@ const Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int wi
 
 ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other) const
 {
-	/*if (!m_ImageDS || !other.m_ImageDS)
-	{
-		cout << "nullptr\n or out of range\n";
-		exit(0);
-	}*/
 
 	int newRow = (m_height > other.m_height) ? m_height : other.m_height;// max();
 	int newCol = m_width + other.m_width;
@@ -181,7 +164,6 @@ ImageDataStructure ImageDataStructure::operator+(const ImageDataStructure& other
 
 ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other) const
 {
-	// i need to check if is nullptr
 	int newRow = (m_height > other.m_height) ? m_height : other.m_height;
 	int newCol = (m_width > other.m_width) ? m_width : other.m_width;
 	Pixel** newMatrix = allocImage(newRow, newCol);
@@ -214,7 +196,6 @@ ImageDataStructure ImageDataStructure::operator|(const ImageDataStructure& other
 
 ImageDataStructure ImageDataStructure::operator&(const ImageDataStructure& other) const
 {
-	// i need to check if is nullptr
 	int newRow = (m_height < other.m_height) ? m_height : other.m_height;
 	int newCol = (m_width < other.m_width) ? m_width : other.m_width;
 	Pixel** newMatrix = allocImage(newRow, newCol);
@@ -230,18 +211,21 @@ ImageDataStructure ImageDataStructure::operator&(const ImageDataStructure& other
 }
 
 
-void ImageDataStructure::operator~()
+ImageDataStructure ImageDataStructure::operator~()
 {
-	for (int i = 0; i < m_height; i++)
+	ImageDataStructure temp(*this); //copy c-tor
+
+	for (int i = 0; i < temp.m_height; i++)
 	{
-		for (int j = 0; j < m_width; j++)
+		for (int j = 0; j < temp.m_width; j++)
 		{
-			if (m_ImageDS[i][j] == BLACK)
-				m_ImageDS[i][j] = WHITE;
-			else if (m_ImageDS[i][j] == WHITE)
-				m_ImageDS[i][j] = BLACK;
+			if (temp.m_ImageDS[i][j] == BLACK)
+				temp.m_ImageDS[i][j] = WHITE;
+			else if (temp.m_ImageDS[i][j] == WHITE)
+				temp.m_ImageDS[i][j] = BLACK;
 		}
 	}
+	return temp;
 }
 
 std::ostream& operator<<(std::ostream& os, const ImageDataStructure& image)

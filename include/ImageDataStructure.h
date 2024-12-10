@@ -16,7 +16,7 @@ public:
 	~ImageDataStructure();
 	int GetHeight()const;
 	int GetWidth()const;
-	void operator~();
+	ImageDataStructure operator~();
 	bool operator==(const ImageDataStructure&)const;
 	ImageDataStructure& operator=(const ImageDataStructure&);
 	Pixel& operator()(unsigned int, unsigned int);

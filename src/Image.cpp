@@ -43,12 +43,6 @@ bool operator!=(const Image& right ,const Image& left)
 {
 	return !(right == left);
 }
-//
-//void Image::operator=(const Image& other)
-//{
-//	this->m_Image = other.m_Image;
-//}
-
 
 // Remember to change the function to be more beautiful.
 Image Image::operator+(const Image& other) const
@@ -63,34 +57,30 @@ Image& operator+=(Image& right, const Image& left)
 	return (right = right + left);
 }
 
-Image Image::operator*(unsigned int n) const
+Image operator*(const Image& image, unsigned int n)
 {
 	if (n == 0)
 		return Image();
-	Image temp(m_Image.GetHeight(), m_Image.GetWidth() * n); // éöéøú úîåðä áâåãì îúàéí		
-	for (unsigned int i = 0; i < n; i++)
-		temp += *this;
+
+	Image temp; 	
+	for (unsigned i = 0; i < n; i++)
+		temp += image;
 
 	return temp;
 }
 
-void Image::operator*=(unsigned int n)
+Image operator*(unsigned int n, const Image& image)
 {
-	if (n == 0)
-	{
-		*this = Image();
-		return;
-	}
-	*this = n * *this;
+	return image * n;
+}
+
+Image& operator*=(Image& image, unsigned int n)
+{
+	return (image = image * n);
 }
 
 Image Image::operator|(const Image& other) const
 {
-	//i need to check if is nullptr
-
-	/*Image temp;
-	temp.m_Image = m_Image | other.m_Image;
-	return temp;*/
 	return Image(m_Image | other.m_Image);
 }
 
@@ -107,11 +97,6 @@ Image Image::operator&(const Image& other) const
 Image& operator&=(Image& right, const Image& left)
 {
 	return (right = right & left);
-}
-
-Image operator*(unsigned int n, const Image& image)
-{
-	return image * n;
 }
 
 

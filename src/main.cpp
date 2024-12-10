@@ -68,7 +68,8 @@ int main()
 	image1 = image2 = image3;
 	cout << image1 << endl;
 
-	// NO WORK.
+	cout << "image1*0" << endl;
+	cout << image1 * 0 << endl;
 	cout << "image1*1" << endl;
 	cout << image1*1<< endl;
 	cout << "image1*2" << endl;

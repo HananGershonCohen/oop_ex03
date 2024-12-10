@@ -12,7 +12,7 @@ public:
 	Image() = default; // (defult) c-tor 1
 	Image(int, int); // c-tor 2
 	Image(int , int , Pixel ); // c-tor 3
-	Image(const ImageDataStructure& imageDS); // c-tor 4 (Tzvi)
+	Image(const ImageDataStructure& imageDS); // c-tor 4 
 	Image(const Image&); // copy c-tor
 	int GetHeight() const;
 	int GetWidth() const;
@@ -22,9 +22,6 @@ public:
 	bool operator==(const Image&)const;
 	Image& operator=(const Image&) = default;
 	Image operator+(const Image& other) const;
-	Image operator*(unsigned int n)const;
-	friend Image operator*(unsigned int n, const Image& image);
-	void operator *=(unsigned int n);
 	Image operator|(const Image&) const;
 	Image operator&(const Image&) const;
 	friend std::ostream& operator<<(std::ostream&, const Image&);
@@ -37,3 +34,6 @@ bool operator!=(const Image&, const Image&);
 Image& operator += (Image& ,const Image&);
 Image& operator|=(Image&, const Image&);
 Image& operator&=(Image&, const Image&);
+Image operator*(const Image& image, unsigned int n);
+Image operator*(unsigned int n, const Image& image);
+Image& operator*=(Image& image, unsigned int n);

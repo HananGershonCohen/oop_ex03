@@ -20,20 +20,20 @@ public:
 	Pixel& operator()(unsigned int, unsigned int);
 	const Pixel& operator()(unsigned int, unsigned int) const;
 	bool operator==(const Image&)const;
-	bool operator!=(const Image&)const;
-	void operator=(const Image&);
+	Image& operator=(const Image&) = default;
 	Image operator+(const Image& other) const;
-	void operator += (const Image& other);
 	Image operator*(unsigned int n)const;
 	friend Image operator*(unsigned int n, const Image& image);
 	void operator *=(unsigned int n);
 	Image operator|(const Image&) const;
-	void operator|=(const Image&);
 	Image operator&(const Image&) const;
-	void operator&=(const Image&);
 	friend std::ostream& operator<<(std::ostream&, const Image&);
 
 private:
 	ImageDataStructure m_Image;
 };
 
+bool operator!=(const Image&, const Image&);
+Image& operator += (Image& ,const Image&);
+Image& operator|=(Image&, const Image&);
+Image& operator&=(Image&, const Image&);

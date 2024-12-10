@@ -39,31 +39,28 @@ bool Image::operator==(const Image& other) const
 	return (m_Image == other.m_Image); 
 }
 
-bool  Image::operator!=(const Image& other)const
+bool operator!=(const Image& right ,const Image& left)
 {
-	return !(*this == other);
+	return !(right == left);
 }
-
-void Image::operator=(const Image& other)
-{
-	this->m_Image = other.m_Image;
-}
+//
+//void Image::operator=(const Image& other)
+//{
+//	this->m_Image = other.m_Image;
+//}
 
 
 // Remember to change the function to be more beautiful.
 Image Image::operator+(const Image& other) const
 {
 	Image temp;
-
 	temp.m_Image = m_Image + other.m_Image;
-
 	return temp;
-
 }
 
-void Image::operator+=(const Image& other)
+Image& operator+=(Image& right, const Image& left)
 {
-	*this = *this + other;
+	return (right = right + left);
 }
 
 Image Image::operator*(unsigned int n) const
@@ -97,9 +94,9 @@ Image Image::operator|(const Image& other) const
 	return Image(m_Image | other.m_Image);
 }
 
-void Image::operator|=(const Image& other)
+Image& operator|=(Image& right, const Image& left)
 {
-	*this = *this | other;
+	return (right = right | left);
 }
 
 Image Image::operator&(const Image& other) const
@@ -107,9 +104,9 @@ Image Image::operator&(const Image& other) const
 	return Image(m_Image & other.m_Image);
 }
 
-void Image::operator&=(const Image& other)
+Image& operator&=(Image& right, const Image& left)
 {
-	*this = *this & other;
+	return (right = right & left);
 }
 
 Image operator*(unsigned int n, const Image& image)

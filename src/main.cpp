@@ -12,6 +12,7 @@ const unsigned char WHITE = (unsigned char)32;
 
 int main()
 {
+	// TEMP //
 	Pixel pix1, pix2(GRAY), pix3(BLACK);
 
 	cout << "pix1" << endl;

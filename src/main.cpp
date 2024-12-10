@@ -37,8 +37,21 @@ int main()
 	pix1 = pix2 = pix3;
 	cout << pix1 << endl;
 
-	Image image1(10,10,BLACK);
+	Image image1(10,10,GRAY);
+	Image image2(5, 5, WHITE);
+	Image image3(15, 15, BLACK);
 	cout << "image1" << endl;
+	cout << image1 << endl;
+	cout << "image2" << endl;
+	cout << image2 << endl;
+	cout << "image3" << endl;
+	cout << image3 << endl;
+
+	cout << "image1=image2" << endl;
+	image1 = image2;
+	cout << image1 << endl;
+	cout << "image1=image2=image3" << endl;
+	image1 = image2 = image3;
 	cout << image1 << endl;
 
 	cout << "image1*3" << endl;

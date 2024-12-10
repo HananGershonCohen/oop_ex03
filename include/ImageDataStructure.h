@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Pixel.h"
+#include <concepts>
 
 using std::cout;
 using std::endl;
@@ -17,18 +18,18 @@ public:
 	int GetWidth()const;
 	void operator~();
 	bool operator==(const ImageDataStructure&)const;
-	void operator=(const ImageDataStructure&);
+	ImageDataStructure& operator=(const ImageDataStructure&);
 	Pixel& operator()(unsigned int, unsigned int);
 	const Pixel& operator()(unsigned int, unsigned int) const;
-	ImageDataStructure operator+(const ImageDataStructure& other) const;
+	ImageDataStructure operator+(const ImageDataStructure&) const;
 	ImageDataStructure operator|(const ImageDataStructure&) const;
 	ImageDataStructure operator&(const ImageDataStructure&) const;
 	friend std::ostream& operator<<(std::ostream&, const ImageDataStructure&);
 
 private:
 	Pixel** m_ImageDS = nullptr;
-	int m_width; // change to UNSIGNED INT.
-	int m_height; // change to UNSIGNED INT.
+	int m_width; 
+	int m_height;
 	void copy(const ImageDataStructure&);
 	Pixel** allocImage(int, int) const;
 

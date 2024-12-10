@@ -2,14 +2,14 @@
 const unsigned char BLACK = (unsigned char)219;
 const unsigned char WHITE = (unsigned char)32;
 
-ImageDataStructure::ImageDataStructure(int height, int width ,Pixel pixel)
-	:m_height(height) , m_width(width)
+ImageDataStructure::ImageDataStructure(int height, int width, Pixel pixel)
+	:m_height(height), m_width(width)
 {
 	// Dynamic allocation of a two-dimensional array
 	m_ImageDS = allocImage(m_height, m_width);
 
 	// Initializing the pixels
-	for (int i=0;i< height;i++)
+	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < m_width; j++)
 		{
@@ -45,7 +45,7 @@ void ImageDataStructure::copy(const ImageDataStructure& other)
 			m_ImageDS[i][j] = other.m_ImageDS[i][j];
 		}
 	}
-} 
+}
 
 Pixel** ImageDataStructure::allocImage(int height, int width)const
 {
@@ -111,21 +111,25 @@ bool ImageDataStructure::operator==(const ImageDataStructure& other) const
 	return true;
 }
 
-void ImageDataStructure::operator=(const ImageDataStructure& other)
+ImageDataStructure& ImageDataStructure::operator=(const ImageDataStructure& other)
 {
+	ImageDataStructure temp = other;
+	std::ranges::swap(temp.m_height, this->m_height);
+	std::ranges::swap(temp.m_width, this->m_width);
+	std::ranges::swap(temp.m_ImageDS, this->m_ImageDS);
+	return *this;
+	//if (this == &other)
+	//	return; 
 
-	if (this == &other)
-		return; 
+	//if (!other.m_ImageDS)
+	//{
+	//	cout << "nullptr\n";
+	//	exit(0);
+	//}
 
-	if (!other.m_ImageDS)
-	{
-		cout << "nullptr\n";
-		exit(0);
-	}
-
-	this->deleteImage();
-	this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
-	this->copy(other);
+	//this->deleteImage();
+	//this->m_ImageDS = allocImage(other.m_height, other.m_width);// the members height, width update in "copy" function.
+	//this->copy(other);
 }
 
 Pixel& ImageDataStructure::operator()(unsigned int height, unsigned int width)

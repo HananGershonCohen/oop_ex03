@@ -4,6 +4,9 @@ Image::Image(int height, int width):m_Image(height ,width) {}
 
 Image::Image(int height, int width, Pixel pixel) :m_Image(height, width, pixel) {}
 
+Image::Image(const ImageDataStructure& imageDS)
+	:m_Image{ imageDS } {}
+
 Image::Image(const Image& other) :m_Image(other.m_Image) {}
 
 int Image::GetHeight()const

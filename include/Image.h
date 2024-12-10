@@ -12,6 +12,7 @@ public:
 	Image() = default; // (defult) c-tor 1
 	Image(int, int); // c-tor 2
 	Image(int , int , Pixel ); // c-tor 3
+	Image(const ImageDataStructure& imageDS); // c-tor 4 (Tzvi)
 	Image(const Image&); // copy c-tor
 	int GetHeight() const;
 	int GetWidth() const;

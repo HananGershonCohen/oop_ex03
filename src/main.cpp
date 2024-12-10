@@ -20,7 +20,16 @@ int main()
 	cout << pix2 << endl;
 	cout << "pix3" << endl;
 	cout << pix3 << endl;
-	
+
+	cout << "operator== AND operator!=" << endl;
+	if (pix1 == pix1)
+		cout << "GOOD" << endl;
+	else cout << "NO GOOD" << endl;
+	if (pix1 != pix2)
+		cout << "GOOD" << endl;
+	else cout << "NO GOOD" << endl;
+
+
 	cout << "pix1=pix2" << endl;
 	pix1 = pix2;
 	cout << pix1 << endl;

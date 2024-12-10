@@ -13,9 +13,9 @@ bool Pixel::operator==(const Pixel& other) const
 	return (this->m_color == other.m_color);
 }
 
-bool Pixel::operator!=(const Pixel& other) const
+bool operator!=(const Pixel& left, const Pixel& right)
 {
-	return !(*this == other);
+	return !(left == right);
 }
 
 Pixel Pixel::operator|(const Pixel& other) const
@@ -23,9 +23,9 @@ Pixel Pixel::operator|(const Pixel& other) const
 	return (Pixel(m_color >= other.m_color ? m_color : other.m_color));
 }
 
-void Pixel::operator|=(const Pixel& other)
+void operator|=(Pixel& left, const Pixel& right)
 {
-	*this = *this | other;
+	left = left | right;
 }
 
 Pixel Pixel::operator&(const Pixel& other) const
@@ -33,9 +33,9 @@ Pixel Pixel::operator&(const Pixel& other) const
 	return (Pixel(this->m_color <= other.m_color ? m_color : other.m_color));
 }
 
-void Pixel::operator&=(const Pixel& other)
+void operator&=(Pixel& left,const Pixel& right)
 {
-	*this = *this & other;
+	left = left & right;
 }
 
 Pixel& Pixel::operator=(const Pixel& other)

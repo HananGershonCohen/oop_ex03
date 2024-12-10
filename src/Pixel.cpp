@@ -38,9 +38,10 @@ void Pixel::operator&=(const Pixel& other)
 	*this = *this & other;
 }
 
-void Pixel::operator=(const Pixel& other)
+Pixel& Pixel::operator=(const Pixel& other)
 {
 	m_color = other.m_color;
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Pixel& pixel)

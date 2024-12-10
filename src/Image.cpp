@@ -71,7 +71,7 @@ Image Image::operator*(unsigned int n) const
 	if (n == 0)
 		return Image();
 	Image temp(m_Image.GetHeight(), m_Image.GetWidth() * n); // éöéøú úîåðä áâåãì îúàéí		
-	for (int i = 0; i < n; i++)
+	for (unsigned int i = 0; i < n; i++)
 		temp += *this;
 
 	return temp;

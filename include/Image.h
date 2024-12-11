@@ -37,3 +37,4 @@ Image& operator&=(Image&, const Image&);
 Image operator*(const Image& image, unsigned int n);
 Image operator*(unsigned int n, const Image& image);
 Image& operator*=(Image& image, unsigned int n);
+Image& operator*=(unsigned int n, Image& image);

@@ -79,6 +79,11 @@ Image& operator*=(Image& image, unsigned int n)
 	return (image = image * n);
 }
 
+Image& operator*=(unsigned int n, Image& image)
+{
+	return (image = image * n);
+}
+
 Image Image::operator|(const Image& other) const
 {
 	return Image(m_Image | other.m_Image);

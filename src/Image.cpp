@@ -44,12 +44,9 @@ bool operator!=(const Image& right ,const Image& left)
 	return !(right == left);
 }
 
-// Remember to change the function to be more beautiful.
 Image Image::operator+(const Image& other) const
 {
-	Image temp;
-	temp.m_Image = m_Image + other.m_Image;
-	return temp;
+	return (m_Image + other.m_Image);
 }
 
 Image& operator+=(Image& right, const Image& left)

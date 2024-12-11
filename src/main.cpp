@@ -179,12 +179,6 @@ int main()
     cout << image16;
     cout << endl;
 
-    // כפל משמאל
-    cout << "Change the 2 *= image16 is: \n";
-    2 *= image16;
-    cout << image16;
-    cout << endl;
-
     // מימוש אופרטור אונארי ~ הופך שחור ללבן, לבן לשחור, אפור נשאר אפור
     Image image17(8, 12, Pixel(WHITE));
     Image image18(8, 12, Pixel(BLACK));
